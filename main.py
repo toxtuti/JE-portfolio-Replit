@@ -1,31 +1,23 @@
 
-import os
-from notion_client import Client
+from flask import Flask
 
-def main():
-    # Initialize the Notion client
-    # You'll need to set your Notion API token as a secret
-    notion_token = os.environ.get('NOTION_TOKEN')
-    
-    if not notion_token:
-        print("Please set your NOTION_TOKEN in the Secrets tab")
-        print("You can get your token from: https://www.notion.so/my-integrations")
-        return
-    
-    notion = Client(auth=notion_token)
-    
-    # Example: List all databases
-    try:
-        # This will list databases that your integration has access to
-        databases = notion.search(filter={"property": "object", "value": "database"})
-        print("Available databases:")
-        for db in databases["results"]:
-            print(f"- {db['title'][0]['plain_text'] if db['title'] else 'Untitled'}")
-            print(f"  ID: {db['id']}")
-    
-    except Exception as e:
-        print(f"Error connecting to Notion: {e}")
-        print("Make sure your NOTION_TOKEN is correct and your integration has proper permissions")
+app = Flask(__name__)
 
-if __name__ == "__main__":
-    main()
+@app.route('/')
+def hello_world():
+    return '<h1>Hello, Flask!</h1><p>Your Flask app is running on Replit!</p>'
+
+@app.route('/about')
+def about():
+    return '<h1>About</h1><p>This is a Flask application deployed on Replit.</p>'
+
+@app.route('/api/data')
+def get_data():
+    return {
+        "message": "Hello from Flask API!",
+        "status": "success",
+        "data": [1, 2, 3, 4, 5]
+    }
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
