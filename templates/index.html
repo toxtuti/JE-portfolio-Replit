@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김지은의 포트폴리오</title>
+
+    <style>
+        @font-face {
+            font-family: 'GmarketSansLight';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+            font-weight: 300; /* Light 굵기 */
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: 500; /* Medium 굵기 */
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSansBold';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: 700; /* Bold 굵기 */
+            font-style: normal;
+        }
+
+        /* CSS Reset 및 기본 스타일 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'GmarketSansMedium', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            line-height: 1.6;
+            color: #f8f8f8; /* 글자색: 흰색 계열 */
+            background-color: #1a1a1a; /* 배경색: 검은색 계열 */
+            min-height: 100vh;
+            padding-top: 60px; /* 고정 상단 바 높이만큼 여백 */
+            padding-left: 0; /* 좌우 여백 제거 */
+            padding-right: 0; /* 좌우 여백 제거 */
+        }
+
+        /* 폰트 굵기별 적용 */
+        h1, h2, strong {
+            font-family: 'GmarketSansBold', 'Pretendard', sans-serif;
+        }
+        p, ul li, .fixed-top-bar .info span { 
+            font-family: 'GmarketSansLight', 'Pretendard', sans-serif;
+        }
+
+        /* 고정 상단 바 */
+        .fixed-top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px; /* 고정 바 높이 */
+            background-color: #000; /* 검은색 */
+            border-bottom: 1px solid #333; /* 어두운 테두리 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* 그림자 진하게 */
+            z-index: 2000; /* 다른 요소 위에 오도록 */
+            display: flex;
+            align-items: center;
+            padding-left: 15px; /* 좌우 패딩 줄임 */
+            padding-right: 15px; /* 좌우 패딩 줄임 */
+        }
+
+        .fixed-top-bar .container { 
+            max-width: none; 
+            margin: 0; 
+            padding: 0; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .fixed-top-bar .name h1 {
+            font-size: 1.5em; /* 상단 바 이름 크기 */
+            font-weight: 700;
+            color: #f8f8f8; /* 흰색 */
+            margin: 0; 
+            letter-spacing: -0.03em;
+        }
+
+        .fixed-top-bar .info {
+            font-size: 0.9em; /* 상단 바 정보 크기 */
+            color: #ccc; /* 밝은 회색 */
+            text-align: right;
+            display: flex;
+            align-items: center;
+        }
+
+        .fixed-top-bar .info .info-item { /* 개별 정보 항목 컨테이너 */
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            margin-left: 10px; /* 각 항목 사이 간격 추가 */
+        }
+        .fixed-top-bar .info .info-item:first-child {
+            margin-left: 0; /* 첫 번째 항목 왼쪽 마진 제거 */
+        }
+
+        .fixed-top-bar .info svg {
+            width: 1em; /* 아이콘 크기 통일 */
+            height: 1em;
+            margin-right: 5px; /* 아이콘과 텍스트 간격 */
+            fill: currentColor; /* 텍스트 색상을 따라가도록 */
+            stroke: currentColor; /* 선 아이콘을 위해 stroke도 추가 */
+            stroke-width: 1.5; /* stroke-width도 설정 (경우에 따라) */
+            vertical-align: middle; /* 텍스트와 세로 정렬 */
+        }
+        /* 이메일 아이콘만 별도 fill 설정 (제공된 SVG에 fill="none"이 있어서) */
+        .fixed-top-bar .info a svg {
+            fill: none; /* 이메일 아이콘은 fill="none"이므로 제거 */
+            stroke-width: 1.5;
+        }
+
+
+        /* 메인 컨텐츠 영역 (스크롤되는 부분) */
+        .main-content-scroll-area {
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+            padding-top: 20px; 
+            font-size: 0.9em; 
+        }
+
+        /* 상단 안내 메시지 스타일 */
+        .top-notice {
+            background-color: #333; 
+            color: #f8f8f8; 
+            border: 1px solid #555; 
+            padding: 15px 20px;
+            margin-top: 30px; 
+            margin-bottom: 30px; 
+            border-radius: 8px;
+            font-size: 1em; 
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+        }
+        .top-notice strong {
+            font-family: 'GmarketSansBold', 'Pretendard', sans-serif; 
+            margin-right: 5px;
+        }
+
+
+        /* 자기소개 및 이력 섹션 (기존 3단) */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1.8fr 1.6fr 1.6fr; 
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333; 
+            margin-bottom: 40px;
+        }
+
+        .about-column h2 {
+            font-size: 0.9em; 
+            font-weight: 600;
+            color: #aaa; 
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-family: 'GmarketSansMedium', 'Pretendard', sans-serif;
+        }
+
+        .about-column p, .about-column ul {
+            font-size: 1em; 
+            color: #ccc; 
+            line-height: 1.7;
+        }
+
+        .about-column ul {
+            list-style: none;
+            padding: 0; 
+        }
+
+        .about-column ul li {
+            margin-bottom: 20px; 
+        }
+        .about-column ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 포트폴리오 2단 레이아웃 (새로운 구조) */
+        .portfolio-two-column-wrapper {
+            display: flex;
+            gap: 30px; 
+            margin-bottom: 50px; 
+        }
+
+        .portfolio-toc-sidebar { /* 왼쪽 좁은 컬럼 - 채널 목록 (차례) */
+            flex-shrink: 0; 
+            width: 200px; 
+            padding-top: 10px; 
+        }
+        .portfolio-toc-sidebar h2 {
+            font-size: 1.2em; 
+            color: #f8f8f8; 
+            margin-bottom: 20px;
+            font-family: 'GmarketSansBold', 'Pretendard', sans-serif;
+        }
+        .portfolio-toc-sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .portfolio-toc-sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .portfolio-toc-sidebar ul li a {
+            display: block;
+            padding: 8px 10px;
+            color: #ccc; 
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            font-family: 'GmarketSansMedium', 'Pretendard', sans-serif;
+        }
+        .portfolio-toc-sidebar ul li a:hover,
+        .portfolio-toc-sidebar ul li a.active {
+            background-color: #333; 
+            color: #007bff; 
+        }
+
+
+        .portfolio-videos-main { 
+            flex-grow: 1; 
+            max-width: calc(100% - 200px - 30px); 
+        }
+
+
+        /* 채널별 그룹 포트폴리오 섹션 스타일 */
+        .portfolio-sections {
+            /* margin-top은 더 이상 필요 없음 */
+        }
+
+        .channel-section {
+            margin-bottom: 50px; 
+        }
+
+        .channel-title {
+            font-size: 1.8em; 
+            font-weight: 700;
+            color: #f8f8f8; 
+            margin-bottom: 15px;
+            border-bottom: 2px solid #333; 
+            padding-bottom: 10px;
+        }
+
+        .channel-comment {
+            font-size: 1em; 
+            color: #aaa; 
+            margin-bottom: 25px; 
+            line-height: 1.6;
+            max-width: 800px;
+            font-family: 'GmarketSansLight', 'Pretendard', sans-serif;
+        }
+
+        /* 비디오 그리드 (간격 최소화) */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            gap: 5px; 
+        }
+
+        /* 각 비디오 아이템 */
+        .video-item {
+            background-color: #000; 
+            border-radius: 0px; 
+            overflow: hidden;
+            box-shadow: none; 
+            transition: none; 
+            text-decoration: none;
+            color: inherit;
+            padding: 0; 
+        }
+
+        /* 비활성화된 링크에 대한 스타일 */
+        .video-item[href="#"] { 
+            cursor: not-allowed; 
+            opacity: 0.7; 
+        }
+        .video-item[href="#"]:hover {
+            transform: none; 
+            box-shadow: none; 
+        }
+
+        .video-item:hover {
+            transform: none; 
+            box-shadow: none; 
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: auto; 
+            background-color: #333; 
+            display: block;
+            object-fit: cover;
+        }
+
+        .video-info {
+            padding: 10px; 
+            background-color: #222; 
+            min-height: 50px; 
+            display: flex;
+            align-items: center; 
+        }
+
+        .video-info h2 {
+            font-size: 0.8rem; 
+            font-weight: 500;
+            color: #f8f8f8; 
+            white-space: normal; 
+            display: -webkit-box; 
+            -webkit-line-clamp: 2; 
+            -webkit-box-orient: vertical; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            font-family: 'GmarketSansMedium', 'Pretendard', sans-serif;
+        }
+
+        /* 데이터 없을 때 메시지 */
+        .no-videos {
+            text-align: center;
+            color: #aaa; 
+            padding: 50px;
+            font-size: 1.1em; 
+            grid-column: 1 / -1;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) { 
+            body {
+                padding-top: 50px; 
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .fixed-top-bar {
+                height: auto; 
+                min-height: 50px; 
+                padding: 5px 15px; 
+            }
+            .fixed-top-bar .name h1 {
+                font-size: 1.2em;
+                margin-bottom: 5px; 
+            }
+            .fixed-top-bar .info {
+                font-size: 0.8em;
+                gap: 5px; 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .fixed-top-bar .info span,
+            .fixed-top-bar .info a {
+                white-space: normal; 
+                text-align: center; 
+            }
+            .fixed-top-bar .info svg {
+                width: 0.9em;
+                height: 0.9em;
+                margin-right: 3px;
+            }
+
+            .main-content-scroll-area {
+                padding: 0 15px;
+                padding-top: 15px; 
+                font-size: 1em; 
+            }
+            .top-notice {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                padding: 10px 15px;
+                font-size: 0.85em;
+                background-color: #444; 
+                color: #f8f8f8;
+                border-color: #666;
+            }
+            .about-section {
+                grid-template-columns: 1fr; 
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+
+            .portfolio-two-column-wrapper {
+                flex-direction: column; 
+                gap: 0; 
+                margin-bottom: 30px;
+            }
+            .portfolio-toc-sidebar {
+                width: 100%; 
+                padding: 15px 0;
+                border-bottom: 1px solid #333; 
+                text-align: center;
+                background-color: #222; 
+            }
+            .portfolio-toc-sidebar h2 {
+                margin-bottom: 15px;
+                color: #f8f8f8;
+            }
+            .portfolio-toc-sidebar ul li a {
+                background-color: transparent;
+                color: #ccc;
+            }
+            .portfolio-toc-sidebar ul li a:hover,
+            .portfolio-toc-sidebar ul li a.active {
+                background-color: #555;
+                color: #f8f8f8;
+            }
+
+            .portfolio-videos-main {
+                max-width: 100%; 
+                padding-top: 20px; 
+            }
+
+            .channel-section {
+                margin-bottom: 40px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .channel-title {
+                font-size: 1.6em;
+                color: #f8f8f8;
+                border-bottom-color: #444;
+            }
+            .channel-comment {
+                font-size: 0.95em;
+                color: #aaa;
+            }
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+                gap: 3px;
+            }
+            .video-thumbnail {
+                height: auto;
+            }
+            .video-info {
+                padding: 5px;
+                min-height: 40px;
+                background-color: #111; 
+            }
+            .video-info h2 {
+                font-size: 0.9em;
+                color: #f8f8f8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="fixed-top-bar">
+        <div class="container">
+            <div class="name">
+                <h1>김지은</h1>
+            </div>
+            <div class="info">
+                <span class="info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 2h-4c-3.28 0-4.919 0-6.081.814a4.5 4.5 0 0 0-1.105 1.105C2 5.08 2 6.72 2 10s0 4.919.814 6.081a4.5 4.5 0 0 0 1.105 1.105C5.08 18 6.72 18 10 18h4c3.28 0 4.919 0 6.081-.814a4.5 4.5 0 0 0 1.105-1.105C22 14.92 22 13.28 22 10s0-4.919-.814-6.081a4.5 4.5 0 0 0-1.105-1.105C18.92 2 17.28 2 14 2m-3 13h2m1.5 7l-.316-.419c-.71-.944-.887-2.387-.437-3.581M9.5 22l.316-.419c.71-.944.887-2.387.437-3.581M7 22h10" color="currentColor"/></svg>
+                    영상 제작자
+                </span>
+                <span class="info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"><path d="M6.4 4.76a7.92 7.92 0 0 1 11.2 11.2l-4.186 4.186a2 2 0 0 1-2.828 0L6.4 15.96a7.92 7.92 0 0 1 0-11.2Z"/><circle cx="12" cy="10.36" r="3" stroke-linecap="round"/></g></svg>
+                    부산, 대한민국
+                </span>
+                <a href="mailto:gorjeous11@gmail.com" class="info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m16.484 11.976l6.151-5.344v10.627zm-7.926.905l2.16 1.875c.339.288.781.462 1.264.462h.017h-.001h.014c.484 0 .926-.175 1.269-.465l-.003.002l2.16-1.875l6.566 5.639H1.995zM1.986 5.365h20.03l-9.621 8.356a.612.612 0 0 1-.38.132h-.014h.001h-.014a.61.61 0 0 1-.381-.133l.001.001zm-.621 1.266l6.15 5.344l-6.15 5.28zm21.6-2.441c-.24-.12-.522-.19-.821-.19H1.859a1.87 1.87 0 0 0-.835.197l.011-.005A1.856 1.856 0 0 0 0 5.855v12.172a1.86 1.86 0 0 0 1.858 1.858h20.283a1.86 1.86 0 0 0 1.858-1.858V5.855c0-.727-.419-1.357-1.029-1.66l-.011-.005z"/></svg>
+                    gorjeous11@gmail.com
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content-scroll-area">
+        <div class="about-section">
+            <div class="about-column">
+                <h2>ABOUT</h2>
+                <p>
+                    안녕하세요! 저는 3년이 조금 넘는 시간 동안 영상을 만들어온 영상 제작자 김지은입니다.
+                    <br><br>
+                    제가 가장 즐거워하고 잘하는 일은, 바로 이야기를 영상으로 생생하게 담아내는 거예요. 특히 유튜브 영상 제작을 주로 해왔으며, 기획 단계부터 카메라를 들고 현장을 담아내고, 마지막으로 섬세한 편집을 통해 하나의 완성된 작품을 만들어내는 모든 과정에 참여하는 올라운더로 활동해왔습니다.
+                    <br><br>
+                    영상을 통해 사람들과 소통하고, 따뜻한 감동이나 유쾌한 웃음을 전하는 일에서 큰 보람을 느낍니다. 앞으로도 꾸준히 배우고 도전하며 좋은 콘텐츠를 만들어나가고 싶습니다.
+                    <br><br>
+                    제가 쌓아온 다양한 경험과 역량을 이 포트폴리오에서 확인해 주시면 감사하겠습니다. 궁금한 점이 있으시다면 언제든 편하게 연락 주세요!
+                </p>
+            </div>
+            <div class="about-column">
+                <h2>경력 (TEAM)</h2>
+                <ul>
+                    <li>
+                        <strong>팀브릭스</strong>
+                        <span class="year">2022 - 2024</span><br>
+                        대리, PD, 영상제작 전반에 대한 관리 및 제작
+                    </li>
+                    <li>
+                        <strong>무나</strong>
+                        <span class="year">2021 - 2021</span><br>
+                        PD, 총리실 유튜브 영상 제작
+                    </li>
+                </ul>
+            </div>
+            <div class="about-column">
+                <h2>경험 및 설명 (DESCRIPTION)</h2>
+                <ul>
+                    <li>
+                        <strong>웅진씽크빅 유튜브 "웅이지니"</strong>
+                        <span class="year">2022 - 2024</span><br>
+                        웅진씽크빅 유튜브 채널인 웅이지니의 영상 제작 담당
+                    </li>
+                    <li>
+                        <strong>총리실 유튜브 "뚜겸뚜겸"시리즈 제작 담당</strong>
+                        <span class="year">2021</span><br>
+                        총리실 유튜브 채널의 시리즈 중 하나인 "뚜겸뚜겸"시리즈 영상 제작 담당
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="top-notice">
+            <strong>안내:</strong> 🚫 마크가 붙은 영상은 대외비 프로젝트로, 링크가 비활성화되어 열리지 않습니다.
+        </div>
+
+        <div class="portfolio-two-column-wrapper">
+            <nav class="portfolio-toc-sidebar">
+                <h2>채널 목록</h2>
+                <ul>
+                    {% for channel in ordered_channels %}
+                        <li><a href="#{{ channel.slug }}">{{ channel.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+            <div class="portfolio-videos-main">
+                <div class="portfolio-sections">
+                    {% if ordered_channels %}
+                        {% for channel in ordered_channels %}
+                            <section class="channel-section" id="{{ channel.slug }}">
+                                <h2 class="channel-title">{{ channel.name }}</h2>
+                                {% if channel.comment %}
+                                    <p class="channel-comment">{{ channel.comment }}</p>
+                                {% endif %}
+                                <div class="video-grid">
+                                    {% for video in channel.videos %}
+                                        <a href="{{ video.url }}" target="_blank" class="video-item">
+                                            <img src="{{ video.thumbnail }}" alt="{{ video.title }} 썸네일" class="video-thumbnail">
+                                            <div class="video-info">
+                                                <h2>{{ video.title }}</h2>
+                                            </div>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </section>
+                        {% endfor %}
+                    {% else %}
+                        <p class="no-videos">아직 표시할 유튜브 작업물이 없습니다. 노션 데이터베이스와 썸네일 설정을 확인해주세요!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
