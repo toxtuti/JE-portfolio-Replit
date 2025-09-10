@@ -20,7 +20,7 @@ def get_youtube_video_id(url):
     match = re.search(r'(?:v=|youtu\.be/|embed/|shorts/)([a-zA-Z0-9_-]{11})', url)
     if match:
         return match.group(1)
-    return None 
+    return None # 영상 ID를 찾지 못한 경우
 
 # 채널 이름을 HTML ID로 사용할 수 있는 'slug' 형태로 변환하는 함수
 def slugify(text):
@@ -30,7 +30,7 @@ def slugify(text):
     text = text.lower() # 소문자로 변환
     text = re.sub(r'[^a-z0-9가-힣\s-]', '', text) # 한글, 알파벳, 숫자, 공백, 하이픈 외 제거
     text = re.sub(r'[\s]+', '-', text) # 공백을 하이픈으로 대체
-    text = text.strip('-') # 양 끝 하이픈 제거 (수정된 부분!)
+    text = text.strip('-') # 양 끝 하이픈 제거
     return text
 
 def get_youtube_links_from_notion():
@@ -53,6 +53,8 @@ def get_youtube_links_from_notion():
                     }
                 ]
             )
+
+            print("Notion API 응답:", response) # <-- 이 줄이 로그에 데이터를 출력합니다.
 
             all_notion_pages.extend(response['results']) 
 
@@ -84,6 +86,7 @@ def get_youtube_links_from_notion():
         final_title = ""
         final_url = ""
         final_thumbnail = ""
+        final_tags = []
 
         if '제목' in properties and properties['제목']['type'] == 'title' and properties['제목']['title']:
             final_title = properties['제목']['title'][0]['plain_text']
@@ -91,6 +94,9 @@ def get_youtube_links_from_notion():
             final_title = properties['Name']['title'][0]['plain_text']
         else:
             final_title = "제목 없음"
+
+        if '태그' in properties and properties['태그']['type'] == 'multi_select':
+            final_tags = [tag['name'] for tag in properties['태그']['multi_select']]
 
         original_youtube_url = ""
         if '유튜브 링크' in properties and properties['유튜브 링크']['type'] == 'url' and properties['유튜브 링크']['url']: 
@@ -136,7 +142,8 @@ def get_youtube_links_from_notion():
             grouped_videos_with_sort_key[channel_name]['videos'].append({
                 'title': final_title,
                 'url': final_url,
-                'thumbnail': final_thumbnail 
+                'thumbnail': final_thumbnail,
+                'tags': final_tags
             })
 
     return grouped_videos_with_sort_key
@@ -145,7 +152,6 @@ def get_youtube_links_from_notion():
 def index():
     grouped_youtube_data_with_sort = get_youtube_links_from_notion()
 
-    # 각 채널에 대한 코멘트 (실제 노션 '영상구분' 값과 일치해야 함)
     channel_comments = {
         "웅이지니": "웅진씽크빅 유튜브 채널 '웅이지니'에서 제작한 교육 콘텐츠 영상들입니다. 아이들의 학습 흥미를 유발하는 다양한 기획과 편집으로 참여했습니다.",
         "총리실TV": "총리실 공식 유튜브 채널의 주요 영상들입니다. 사회 현안을 쉽고 재미있게 전달하기 위한 기획과 촬영, 편집을 담당했습니다.", 
@@ -157,13 +163,11 @@ def index():
         "미분류": "채널 정보가 없거나 분류되지 않은 영상들입니다." 
     }
 
-    # 채널들을 '정렬 순서'에 따라 정렬
     sorted_channel_items = sorted(
         grouped_youtube_data_with_sort.items(),
         key=lambda item: item[1]['sort_order'] 
     )
 
-    # 템플릿에 전달할 최종 정렬된 채널 데이터 구조 생성
     ordered_channels_for_template = []
     for channel_name, channel_info in sorted_channel_items:
         ordered_channels_for_template.append({
