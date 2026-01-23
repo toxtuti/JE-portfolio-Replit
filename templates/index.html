@@ -6,9 +6,17 @@
     <title>Jieun Kim Portfolio</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap" rel="stylesheet">
 
     <style>
+        /* [폰트] 중앙 로고용: 이얼의 기억은 잠들지 않는다 (유지) */
+        @font-face {
+            font-family: 'YleeMemoriesNeverSleep';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/yleeMortalHeartImmortalMemory.woff2') format('woff2');
+            font-weight: normal;
+            font-display: swap;
+        }
+
+        /* [폰트] 메인 폰트 복구: GmarketSans */
         @font-face { font-family: 'GmarketSansLight'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff'); font-weight: 300; font-style: normal; }
         @font-face { font-family: 'GmarketSansMedium'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); font-weight: 500; font-style: normal; }
         @font-face { font-family: 'GmarketSansBold'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff'); font-weight: 700; font-style: normal; }
@@ -25,6 +33,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
+            /* 메인 폰트: GmarketSansMedium 복구 */
             font-family: 'GmarketSansMedium', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
@@ -49,14 +58,20 @@
             padding: 0 40px; z-index: 1000; backdrop-filter: blur(5px);
         }
 
-        .nav-left a { font-family: 'GmarketSansBold'; margin-right: 20px; font-size: 0.9rem; text-transform: uppercase; }
+        .nav-left a { 
+            font-family: 'GmarketSansBold'; /* 폰트 복구 */
+            margin-right: 20px; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+        }
         .nav-left a:hover { color: var(--accent-color); }
 
+        /* 중앙 로고 (요청하신 폰트 유지) */
         .logo-center { 
-            font-family: 'WindSong', cursive; 
-            font-size: 2.2rem; 
+            font-family: 'YleeMemoriesNeverSleep', sans-serif; 
+            font-size: 2.0rem; 
             color: var(--text-main); 
-            font-weight: 500;
+            font-weight: normal;
         }
 
         .info-right {
@@ -69,14 +84,29 @@
 
         /* --- HERO 섹션 --- */
         .hero-section { max-width: 1200px; margin: 60px auto 60px; padding: 0 20px; }
-        .hero-title { font-family: 'GmarketSansBold'; font-size: 3.5rem; line-height: 1.1; margin-bottom: 40px; border-bottom: 4px solid var(--text-main); padding-bottom: 30px; text-transform: uppercase; letter-spacing: -1px; }
+
+        .hero-title { 
+            font-family: 'GmarketSansBold'; /* 폰트 복구 */
+            font-size: 3.5rem; 
+            line-height: 1.1; 
+            margin-bottom: 40px; 
+            border-bottom: 4px solid var(--text-main); 
+            padding-bottom: 30px; 
+            text-transform: uppercase; 
+            letter-spacing: -1px; 
+        }
         .hero-title span { color: var(--accent-color); }
 
         .about-grid { display: grid; grid-template-columns: 1.8fr 1.6fr 1.6fr; gap: 40px; }
 
         .about-item h3 { 
-            font-family: 'GmarketSansBold'; font-size: 1.2rem; margin-bottom: 15px; 
-            background-color: var(--text-main); color: white; display: inline-block; padding: 5px 10px; 
+            font-family: 'GmarketSansBold'; /* 폰트 복구 */
+            font-size: 1.2rem; 
+            margin-bottom: 15px; 
+            background-color: var(--text-main); 
+            color: white; 
+            display: inline-block; 
+            padding: 5px 10px; 
         }
 
         .about-item ul { padding-left: 0; }
@@ -89,7 +119,7 @@
         .career-title { 
             display: block; 
             font-size: 1.1em; 
-            font-family: 'GmarketSansBold';
+            font-family: 'GmarketSansBold'; /* 폰트 복구 */
             margin-bottom: 2px; 
             line-height: 1.3;
         }
@@ -126,7 +156,8 @@
         }
 
         .skills-section h3 {
-            font-family: 'GmarketSansBold'; font-size: 1.2rem; margin-bottom: 20px; 
+            font-family: 'GmarketSansBold'; /* 폰트 복구 */
+            font-size: 1.2rem; margin-bottom: 20px; 
             background-color: var(--text-main); color: white; display: inline-block; padding: 5px 10px;
         }
 
@@ -162,7 +193,7 @@
 
         .skill-name {
             display: block;
-            font-family: 'GmarketSansBold';
+            font-family: 'GmarketSansBold'; /* 폰트 복구 */
             font-size: 0.95rem;
             margin-bottom: 5px;
             text-transform: uppercase;
@@ -197,7 +228,8 @@
         }
 
         .portfolio-nav h2 {
-            font-family: 'GmarketSansBold'; font-size: 2.5rem; margin-bottom: 20px;
+            font-family: 'GmarketSansBold'; /* 폰트 복구 */
+            font-size: 2.5rem; margin-bottom: 20px;
         }
 
         .genre-tabs-container {
@@ -211,7 +243,8 @@
         .filter-btn {
             display: block; padding: 8px 20px;
             border: 2px solid var(--text-main);
-            font-family: 'GmarketSansBold'; font-size: 0.9rem;
+            font-family: 'GmarketSansBold'; /* 폰트 복구 */
+            font-size: 0.9rem;
             transition: all 0.3s; background: white; color: var(--text-main);
             border-radius: 10px 10px 0 0; border-bottom: none;
             position: relative; top: 2px;
@@ -223,7 +256,9 @@
         .filter-btn.active { padding-bottom: 12px; top: 0; }
 
         .all-video-btn {
-            margin-left: 20px; font-family: 'GmarketSansBold'; font-size: 1rem;
+            margin-left: 20px; 
+            font-family: 'GmarketSansBold'; /* 폰트 복구 */
+            font-size: 1rem;
             color: var(--text-main); text-transform: uppercase;
             border-bottom: 2px solid transparent; padding-bottom: 2px;
             transition: all 0.3s;
@@ -258,7 +293,14 @@
         .video-item:hover { transform: translate(-4px, -4px); box-shadow: 6px 6px 0px var(--accent-color); }
         .video-thumbnail { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 2px solid var(--text-main); display: block; }
         .video-info { padding: 15px; }
-        .video-info h2 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; color: var(--text-main); white-space: normal; }
+        .video-info h2 { 
+            font-size: 1rem; 
+            font-weight: 700; 
+            margin-bottom: 10px; 
+            line-height: 1.4; 
+            color: var(--text-main); 
+            white-space: normal; 
+        }
         .video-tags { display: flex; flex-wrap: wrap; gap: 5px; }
         .tag { background-color: #f0f0f0; color: #555; padding: 3px 8px; font-size: 0.75rem; border-radius: 4px; }
         .no-videos { text-align: center; color: #999; padding: 50px; }
