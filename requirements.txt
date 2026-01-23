@@ -1,2 +1,4 @@
-Flask
-notion-client
+Flask==2.3.3
+notion-client==2.1.0
+requests==2.31.0
+gunicorn
