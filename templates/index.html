@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jieun Kim Portfolio</title>
+    
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=7WwZau6gMj6x&format=png&color=000000">
 
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-
+    
     <style>
         /* [폰트] 중앙 로고용: 이얼의 기억은 잠들지 않는다 (유지) */
         @font-face {
@@ -84,7 +86,7 @@
 
         /* --- HERO 섹션 --- */
         .hero-section { max-width: 1200px; margin: 60px auto 60px; padding: 0 20px; }
-
+        
         .hero-title { 
             font-family: 'GmarketSansBold'; /* 폰트 복구 */
             font-size: 3.5rem; 
@@ -96,9 +98,9 @@
             letter-spacing: -1px; 
         }
         .hero-title span { color: var(--accent-color); }
-
+        
         .about-grid { display: grid; grid-template-columns: 1.8fr 1.6fr 1.6fr; gap: 40px; }
-
+        
         .about-item h3 { 
             font-family: 'GmarketSansBold'; /* 폰트 복구 */
             font-size: 1.2rem; 
@@ -108,14 +110,14 @@
             display: inline-block; 
             padding: 5px 10px; 
         }
-
+        
         .about-item ul { padding-left: 0; }
         .about-item li { 
             margin-bottom: 25px; 
             border-bottom: 1px dashed #ccc; 
             padding-bottom: 15px; 
         }
-
+        
         .career-title { 
             display: block; 
             font-size: 1.1em; 
@@ -123,7 +125,7 @@
             margin-bottom: 2px; 
             line-height: 1.3;
         }
-
+        
         .career-year { 
             display: block; 
             font-size: 0.9em; 
@@ -131,7 +133,7 @@
             font-weight: bold; 
             margin-bottom: 8px; 
         }
-
+        
         .career-desc {
             display: block;
             font-size: 0.95em;
@@ -139,7 +141,7 @@
             line-height: 1.5;
             word-break: keep-all;
         }
-
+        
         .about-item p { 
             font-size: 1em; 
             color: var(--text-sub); 
@@ -273,7 +275,7 @@
             border-bottom: 2px solid #eee; padding-bottom: 40px; 
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
+        
         .channel-header { margin-bottom: 20px; }
         .channel-title-row { display: flex; align-items: center; margin-bottom: 10px; }
         .channel-title { font-size: 1.8rem; margin-right: 15px; position: relative; }
@@ -285,7 +287,7 @@
         .video-grid {
             display: flex; overflow-x: auto; gap: 25px; padding-bottom: 20px; scroll-behavior: smooth;
         }
-
+        
         .video-item {
             flex: 0 0 300px; background: white; border: 2px solid var(--text-main);
             transition: transform 0.2s; display: block; position: relative;
@@ -323,7 +325,7 @@
             <a href="mailto:gorjeous11@gmail.com">CONTACT</a>
         </nav>
         <div class="logo-center">Jieun Kim</div>
-
+        
         <div class="info-right">
             <span class="info-item">
                 <img src="https://img.icons8.com/?size=100&id=7WwZau6gMj6x&format=png&color=000000" alt="Creator Icon">
@@ -495,12 +497,12 @@
                         {% if channel.comment %}
                             <span class="channel-comment">{{ channel.comment }}</span>
                         {% endif %}
-
+                        
                         <div class="security-notice">
                             <strong>안내:</strong> 🚫 마크가 붙은 영상은 대외비 프로젝트로, 링크가 비활성화되어 열리지 않습니다.
                         </div>
                     </div>
-
+                    
                     <div class="video-grid">
                         {% for video in channel.videos %}
                             <a href="{{ video.url }}" target="_blank" class="video-item">
@@ -530,22 +532,22 @@
             var x, i;
             x = document.getElementsByClassName("channel-section");
             if (c == "all") c = "";
-
+            
             for (i = 0; i < x.length; i++) {
                 w3RemoveClass(x[i], "show");
                 x[i].style.display = "none"; 
-
+                
                 if (c == "" || x[i].id == c) {
                     w3AddClass(x[i], "show");
                     x[i].style.display = "block"; 
                 }
             }
-
+            
             var btns = document.getElementsByClassName("filter-btn");
             for (i = 0; i < btns.length; i++) {
                 btns[i].classList.remove("active");
             }
-
+            
             if(event && event.target && event.target.classList.contains('filter-btn')) {
                 event.target.classList.add("active");
             } 
