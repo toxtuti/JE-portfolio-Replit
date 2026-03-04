@@ -28,7 +28,7 @@
         .header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; border-bottom: 1px solid var(--border-color); }
         .logo { font-family: 'GmarketSansBold'; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
         
-        .archive-container { max-width: 1400px; margin: 60px auto; padding: 0 20px; }
+        .archive-container { max-width: 1400px; margin: 60px auto; padding: 0 20px; min-height: 80vh;}
         
         .page-title { font-family: 'GmarketSansBold'; font-size: 3rem; margin-bottom: 10px; }
         .page-desc { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 50px; max-width: 600px; }
@@ -42,36 +42,48 @@
         .filter-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
         .filter-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
 
-        /* Video Grid */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        /* Video Grid (가로 5개 배열) */
+        .video-grid { 
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); /* 기본 5칸 */
+            gap: 20px; 
+        }
         
-        .video-item { background: white; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.2s, box-shadow 0.2s; display: none; /* JS로 제어 */ }
-        .video-item.show { display: block; animation: fadeIn 0.4s ease-in; }
+        .video-item-wrapper { display: none; } /* 자바스크립트로 show 클래스를 붙여서 보여줌 */
+        .video-item-wrapper.show { display: block; animation: fadeIn 0.4s ease-in; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        .video-item { display: block; background: white; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.2s, box-shadow 0.2s; height: 100%;}
         .video-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
         
         .thumb-wrapper { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #eee; }
         .video-thumbnail { width: 100%; height: 100%; object-fit: cover; }
-        .genre-badge { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.9); padding: 5px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; color: var(--text-main); }
+        
+        /* 장르 뱃지 (왼쪽 위) */
+        .genre-badge { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.95); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-family: 'GmarketSansBold'; color: var(--text-main); }
 
-        .video-info { padding: 20px; }
-        .video-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 3.2em; }
+        .video-info { padding: 15px; }
+        .video-title { font-size: 0.95rem; font-family: 'GmarketSansBold'; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.8em; line-height: 1.4;}
         
-        .video-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
-        .tag { font-size: 0.8rem; color: var(--text-sub); display: flex; align-items: center; gap: 5px; }
-        .tag::before { content: '•'; color: #ccc; }
+        .video-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; }
+        .tag { font-size: 0.75rem; color: #888; background: #f5f5f5; padding: 2px 8px; border-radius: 4px;}
         
-        .video-footer { padding-top: 15px; border-top: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #aaa; }
-        
-        .security-notice { background: #fff5f5; color: #d9534f; padding: 10px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 20px; text-align: center; display: none;}
-        .security-notice.show { display: block; }
+        .security-notice { background: #fff5f5; color: #d9534f; padding: 10px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 20px; text-align: center;}
 
-        @media (max-width: 768px) {
+        /* Pagination (페이지네이션) */
+        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 50px; }
+        .page-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-color); background: white; font-family: 'GmarketSansBold'; color: var(--text-sub); transition: all 0.2s; display: flex; align-items: center; justify-content: center;}
+        .page-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+        .page-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
+
+        /* 반응형 (화면 좁아지면 3개, 2개, 1개로 줄어듦) */
+        @media (max-width: 1200px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) { 
+            .video-grid { grid-template-columns: repeat(2, 1fr); } 
             .header { padding: 15px 20px; }
             .page-title { font-size: 2.2rem; }
-            .filter-section { padding-bottom: 15px; }
         }
+        @media (max-width: 480px) { .video-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -92,100 +104,127 @@
             🚫 <strong>안내:</strong> 제목에 마크가 붙은 영상은 대외비 프로젝트로, 링크가 열리지 않습니다.
         </div>
 
-        <div class="filter-section">
+        <div class="filter-section" id="filter-nav">
             <span class="filter-label">Filter By</span>
-            <button class="filter-btn" onclick="filterSelection('행사스케치')">행사스케치</button>
-            <button class="filter-btn" onclick="filterSelection('all')">All Works</button>
+            <button class="filter-btn active" onclick="filterSelection('all')">All Works</button>
             {% for channel in ordered_channels %}
-                {% if channel.name != '행사스케치' %}
                 <button class="filter-btn" onclick="filterSelection('{{ channel.slug }}')">{{ channel.name }}</button>
-                {% endif %}
             {% endfor %}
         </div>
 
-        <div class="video-grid">
+        <div class="video-grid" id="video-container">
             {% for channel in ordered_channels %}
                 {% for video in channel.videos %}
-                <a href="{{ video.url }}" target="_blank" class="video-item {{ channel.slug }}">
-                    <div class="thumb-wrapper">
-                        <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="video-thumbnail">
-                        <span class="genre-badge">{{ channel.name }}</span>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">{{ video.title }}</h3>
-                        <div class="video-meta">
-                            {% if video.tags %}
-                                {% for tag in video.tags %}
-                                    <span class="tag">{{ tag }}</span>
-                                {% endfor %}
-                            {% endif %}
+                <div class="video-item-wrapper {{ channel.slug }}">
+                    <a href="{{ video.url }}" target="_blank" class="video-item">
+                        <div class="thumb-wrapper">
+                            <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="video-thumbnail">
+                            <span class="genre-badge">{{ channel.name }}</span>
                         </div>
-                        <div class="video-footer">
-                            <span>Jieun Kim</span>
-                            <span>↗</span>
+                        <div class="video-info">
+                            <h3 class="video-title">{{ video.title }}</h3>
+                            <div class="video-meta">
+                                {% if video.tags %}
+                                    {% for tag in video.tags %}
+                                        <span class="tag">#{{ tag }}</span>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
                 {% endfor %}
             {% endfor %}
         </div>
+
+        <div id="pagination" class="pagination"></div>
     </main>
 
     <script>
+        // 페이지네이션 설정
+        const itemsPerPage = 15; // 한 페이지당 영상 15개 (5칸 x 3줄)
+        let currentPage = 1;
+        let currentCategory = "all";
+        let filteredItems = [];
+
         function filterSelection(c) {
-            var x, i;
-            x = document.getElementsByClassName("video-item");
-            if (c == "all") c = "";
+            currentCategory = c;
+            currentPage = 1; // 카테고리가 바뀌면 1페이지로 리셋
             
-            for (i = 0; i < x.length; i++) {
-                w3RemoveClass(x[i], "show");
-                if (x[i].className.indexOf(c) > -1) {
-                    w3AddClass(x[i], "show");
+            let allItems = document.getElementsByClassName("video-item-wrapper");
+            filteredItems = [];
+
+            // 1. 선택된 카테고리에 맞는 영상만 배열에 담기
+            for (let i = 0; i < allItems.length; i++) {
+                let item = allItems[i];
+                item.style.display = "none"; 
+                item.classList.remove("show");
+
+                if (c === "all" || item.className.indexOf(c) > -1) {
+                    filteredItems.push(item);
                 }
             }
-            
-            var btns = document.getElementsByClassName("filter-btn");
-            for (i = 0; i < btns.length; i++) {
+
+            // 2. 버튼 활성화 색상 변경
+            let btns = document.getElementsByClassName("filter-btn");
+            for (let i = 0; i < btns.length; i++) {
                 btns[i].classList.remove("active");
+                if (c === "all" && btns[i].innerText.trim() === "All Works") {
+                    btns[i].classList.add("active");
+                } else if (btns[i].innerText.trim() === c) {
+                    btns[i].classList.add("active");
+                }
             }
+
+            // 3. 화면 그리기
+            renderPage();
+        }
+
+        function renderPage() {
+            // 전부 숨기기
+            for (let i = 0; i < filteredItems.length; i++) {
+                filteredItems[i].style.display = "none";
+                filteredItems[i].classList.remove("show");
+            }
+
+            // 현재 페이지 번호에 해당하는 15개만 보여주기
+            let start = (currentPage - 1) * itemsPerPage;
+            let end = start + itemsPerPage;
             
-            if(event && event.target && event.target.classList.contains('filter-btn')) {
-                event.target.classList.add("active");
-            } else if (c) {
-                // 초기 로딩 시 해당 버튼 활성화
-                for (i = 0; i < btns.length; i++) {
-                    // onclick 속성에 문자열 c가 포함되어 있는지 확인
-                    if (btns[i].getAttribute('onclick').includes("'" + c + "'")) {
-                        btns[i].classList.add("active");
-                        break;
-                    }
-                }
+            for (let i = start; i < end && i < filteredItems.length; i++) {
+                filteredItems[i].style.display = "block";
+                setTimeout(() => {
+                    if(filteredItems[i]) filteredItems[i].classList.add("show");
+                }, 10);
+            }
+
+            renderPaginationButtons();
+        }
+
+        function renderPaginationButtons() {
+            let pageCount = Math.ceil(filteredItems.length / itemsPerPage);
+            let paginationContainer = document.getElementById("pagination");
+            paginationContainer.innerHTML = "";
+
+            if (pageCount <= 1) return; // 1페이지밖에 없으면 번호 숨김
+
+            // 1, 2, 3... 버튼 생성
+            for (let i = 1; i <= pageCount; i++) {
+                let btn = document.createElement("button");
+                btn.innerText = i;
+                btn.className = "page-btn" + (i === currentPage ? " active" : "");
+                btn.onclick = function() {
+                    currentPage = i;
+                    renderPage();
+                    // 페이지 누르면 화면을 필터 탭 위치로 부드럽게 끌어올림
+                    window.scrollTo({ top: document.getElementById('filter-nav').offsetTop - 50, behavior: 'smooth' });
+                };
+                paginationContainer.appendChild(btn);
             }
         }
 
-        function w3AddClass(element, name) {
-            var i, arr1, arr2;
-            arr1 = element.className.split(" ");
-            arr2 = name.split(" ");
-            for (i = 0; i < arr2.length; i++) {
-                if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-            }
-        }
-
-        function w3RemoveClass(element, name) {
-            var i, arr1, arr2;
-            arr1 = element.className.split(" ");
-            arr2 = name.split(" ");
-            for (i = 0; i < arr2.length; i++) {
-                while (arr1.indexOf(arr2[i]) > -1) {
-                    arr1.splice(arr1.indexOf(arr2[i]), 1);     
-                }
-            }
-            element.className = arr1.join(" ");
-        }
-
-        // 초기 로딩 시 '행사스케치'만 보여주기
-        filterSelection("행사스케치");
+        // 브라우저 켜질 때 'All Works' 기본 실행
+        filterSelection("all");
     </script>
 </body>
 </html>
