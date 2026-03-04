@@ -49,21 +49,36 @@
 
         /* --- Hero Section --- */
         .hero {
-            display: flex; gap: 60px; max-width: 1200px; margin: 60px auto 100px; padding: 0 20px; align-items: center;
+            display: flex; gap: 50px; max-width: 1200px; margin: 60px auto 100px; padding: 0 20px; align-items: center;
         }
         .hero-img {
-            flex: 1; border-radius: 12px; overflow: hidden;
+            flex: 1.3; /* [비율 수정] 이미지가 차지하는 가로 영역을 넓혀서 높이도 밸런스를 맞춤 */
+            border-radius: 12px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06); /* 약간의 그림자 추가 */
         }
-        .hero-img img { width: 100%; height: auto; display: block; }
-        .hero-text { flex: 1; }
+        .hero-img img { width: 100%; height: auto; display: block; border-radius: 12px;}
+        .hero-text { 
+            flex: 1; /* 글 영역 비율 */
+        }
         .hero-text h4 { font-size: 0.85rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-family: 'GmarketSansBold';}
         .hero-text h1 { 
             font-family: 'GmarketSansBold'; 
-            font-size: 2.8rem; line-height: 1.2; margin-bottom: 25px; color: var(--text-main); letter-spacing: -1px; word-break: keep-all;
+            font-size: 2.5rem; /* [글씨 수정] 제목 크기 약간 축소 */
+            line-height: 1.3; 
+            margin-bottom: 20px; 
+            color: var(--text-main); 
+            letter-spacing: -1px; 
+            word-break: keep-all;
         }
-        .hero-text p { font-size: 1.05rem; color: var(--text-sub); margin-bottom: 40px; word-break: keep-all; line-height: 1.8; }
+        .hero-text p { 
+            font-size: 0.95rem; /* [글씨 수정] 본문 크기 약간 축소 */
+            color: var(--text-sub); 
+            margin-bottom: 35px; 
+            word-break: keep-all; 
+            line-height: 1.7; 
+        }
         .btn-group { display: flex; gap: 15px; }
-        .btn { padding: 15px 30px; font-family: 'GmarketSansBold'; border-radius: 50px; transition: all 0.3s; font-size: 0.9rem;}
+        .btn { padding: 14px 28px; font-family: 'GmarketSansBold'; border-radius: 50px; transition: all 0.3s; font-size: 0.9rem;}
         .btn-primary { background: var(--accent-color); color: white; border: 1px solid var(--accent-color); }
         .btn-primary:hover { background: #3a505a; transform: translateY(-2px); }
         .btn-outline { background: transparent; border: 1px solid var(--text-main); color: var(--text-main); }
