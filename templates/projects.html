@@ -33,7 +33,7 @@
         .page-title { font-family: 'GmarketSansBold'; font-size: 3rem; margin-bottom: 10px; }
         .page-desc { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 50px; max-width: 600px; }
 
-        /* Filter Tabs */
+        /* Filter Tabs (데스크톱 기본) */
         .filter-section { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; overflow-x: auto; white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; }
         .filter-section::-webkit-scrollbar { display: none; }
         .filter-label { font-size: 0.85rem; color: #999; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
@@ -45,11 +45,11 @@
         /* Video Grid (가로 5개 배열) */
         .video-grid { 
             display: grid; 
-            grid-template-columns: repeat(5, 1fr); /* 기본 5칸 */
+            grid-template-columns: repeat(5, 1fr); 
             gap: 20px; 
         }
         
-        .video-item-wrapper { display: none; } /* 자바스크립트로 show 클래스를 붙여서 보여줌 */
+        .video-item-wrapper { display: none; } 
         .video-item-wrapper.show { display: block; animation: fadeIn 0.4s ease-in; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -71,18 +71,57 @@
         .security-notice { background: #fff5f5; color: #d9534f; padding: 10px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 20px; text-align: center;}
 
         /* Pagination (페이지네이션) */
-        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 50px; }
+        .pagination { 
+            display: flex; justify-content: center; gap: 10px; margin-top: 50px; 
+            flex-wrap: wrap; /* [NEW] 줄바꿈 허용 (모바일 뚫고 나감 방지) */
+        }
         .page-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-color); background: white; font-family: 'GmarketSansBold'; color: var(--text-sub); transition: all 0.2s; display: flex; align-items: center; justify-content: center;}
         .page-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
         .page-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
 
-        /* 반응형 (화면 좁아지면 3개, 2개, 1개로 줄어듦) */
+        /* =================================================================
+           📱 모바일 반응형
+           ================================================================= */
         @media (max-width: 1200px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
+        
         @media (max-width: 768px) { 
             .video-grid { grid-template-columns: repeat(2, 1fr); } 
             .header { padding: 15px 20px; }
             .page-title { font-size: 2.2rem; }
+            
+            /* [NEW] 모바일 필터 블록 텍스트 형태로 디자인 변경 */
+            .filter-section {
+                display: block; /* 가로 스크롤 제거, 한 덩어리로 만듦 */
+                white-space: normal; /* 줄바꿈 허용 */
+                line-height: 2.2; /* 위아래 간격 넉넉히 */
+                padding-bottom: 15px;
+            }
+            .filter-label { display: block; margin-bottom: 8px; } /* FILTER BY 라벨을 윗줄로 */
+            
+            .filter-btn {
+                display: inline-block;
+                padding: 0; border: none; background: transparent;
+                font-size: 0.95rem; color: var(--text-sub); font-family: 'GmarketSansMedium';
+            }
+            .filter-btn.active {
+                background: transparent; color: var(--accent-color); font-family: 'GmarketSansBold';
+                text-decoration: underline; text-underline-offset: 4px;
+            }
+            /* 버튼 사이에 슬래시(/) 넣기 (마지막 버튼 제외) */
+            .filter-btn:not(:last-child)::after {
+                content: " / ";
+                color: #ccc;
+                margin: 0 8px;
+                font-weight: normal;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            /* [NEW] 모바일 페이지네이션 크기 축소 */
+            .pagination { gap: 6px; }
+            .page-btn { width: 34px; height: 34px; font-size: 0.85rem; }
         }
+        
         @media (max-width: 480px) { .video-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -141,20 +180,18 @@
     </main>
 
     <script>
-        // 페이지네이션 설정
-        const itemsPerPage = 15; // 한 페이지당 영상 15개 (5칸 x 3줄)
+        const itemsPerPage = 15; 
         let currentPage = 1;
         let currentCategory = "all";
         let filteredItems = [];
 
         function filterSelection(c) {
             currentCategory = c;
-            currentPage = 1; // 카테고리가 바뀌면 1페이지로 리셋
+            currentPage = 1; 
             
             let allItems = document.getElementsByClassName("video-item-wrapper");
             filteredItems = [];
 
-            // 1. 선택된 카테고리에 맞는 영상만 배열에 담기
             for (let i = 0; i < allItems.length; i++) {
                 let item = allItems[i];
                 item.style.display = "none"; 
@@ -165,7 +202,6 @@
                 }
             }
 
-            // 2. 버튼 활성화 색상 변경
             let btns = document.getElementsByClassName("filter-btn");
             for (let i = 0; i < btns.length; i++) {
                 btns[i].classList.remove("active");
@@ -176,18 +212,15 @@
                 }
             }
 
-            // 3. 화면 그리기
             renderPage();
         }
 
         function renderPage() {
-            // 전부 숨기기
             for (let i = 0; i < filteredItems.length; i++) {
                 filteredItems[i].style.display = "none";
                 filteredItems[i].classList.remove("show");
             }
 
-            // 현재 페이지 번호에 해당하는 15개만 보여주기
             let start = (currentPage - 1) * itemsPerPage;
             let end = start + itemsPerPage;
             
@@ -206,9 +239,8 @@
             let paginationContainer = document.getElementById("pagination");
             paginationContainer.innerHTML = "";
 
-            if (pageCount <= 1) return; // 1페이지밖에 없으면 번호 숨김
+            if (pageCount <= 1) return; 
 
-            // 1, 2, 3... 버튼 생성
             for (let i = 1; i <= pageCount; i++) {
                 let btn = document.createElement("button");
                 btn.innerText = i;
@@ -216,14 +248,12 @@
                 btn.onclick = function() {
                     currentPage = i;
                     renderPage();
-                    // 페이지 누르면 화면을 필터 탭 위치로 부드럽게 끌어올림
                     window.scrollTo({ top: document.getElementById('filter-nav').offsetTop - 50, behavior: 'smooth' });
                 };
                 paginationContainer.appendChild(btn);
             }
         }
 
-        // 브라우저 켜질 때 'All Works' 기본 실행
         filterSelection("all");
     </script>
 </body>

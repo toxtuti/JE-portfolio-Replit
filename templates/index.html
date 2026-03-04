@@ -15,7 +15,7 @@
         @font-face { font-family: 'GmarketSansBold'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff'); font-weight: 700; font-style: normal; }
 
         :root {
-            --bg-color: #F7F6F2; /* 레퍼런스 스타일의 차분한 라이트 그레이 */
+            --bg-color: #F7F6F2;
             --text-main: #222B35;
             --text-sub: #5A6A78;
             --accent-color: #4A6572; 
@@ -44,8 +44,8 @@
         .hero-text { flex: 1; }
         .hero-text h4 { font-size: 0.85rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-family: 'GmarketSansBold'; }
         .hero-text h1 { font-family: 'GmarketSansBold'; font-size: 2.5rem; line-height: 1.3; margin-bottom: 20px; color: var(--text-main); letter-spacing: -1px; word-break: keep-all; }
-        .about-card { margin-bottom: 35px; } /* 데스크톱에서는 투명한 기본 텍스트 박스 */
-        .about-label { display: none; } /* 데스크톱에서는 라벨 숨김 */
+        .about-card { margin-bottom: 35px; } 
+        .about-label { display: none; } 
         .about-card p { font-size: 0.95rem; color: var(--text-sub); word-break: keep-all; line-height: 1.7; margin-bottom: 10px;}
         .btn-group { display: flex; gap: 15px; }
         .btn { padding: 14px 28px; font-family: 'GmarketSansBold'; border-radius: 50px; transition: all 0.3s; font-size: 0.9rem; }
@@ -79,10 +79,10 @@
         
         .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
         .project-card { display: block; background: white; padding: 20px; border-radius: 16px; border: 1px solid #f0f0f0; transition: transform 0.3s, box-shadow 0.3s; }
-        .project-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }
+        .project-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .project-card h4 { display: inline-block; font-family: 'GmarketSansBold'; font-size: 0.75rem; color: var(--text-main); background: #f0f0f0; padding: 4px 10px; border-radius: 4px; margin-bottom: 12px; text-transform: uppercase; }
-        .project-card h3 { font-family: 'GmarketSansBold'; font-size: 1.3rem; margin-bottom: 5px; word-break: keep-all; line-height: 1.4; color: var(--text-main);}
+        /* 태그(h4)를 지웠으므로 제목(h3) 위쪽 여백 조절 */
+        .project-card h3 { font-family: 'GmarketSansBold'; font-size: 1.3rem; margin-top: 5px; margin-bottom: 5px; word-break: keep-all; line-height: 1.4; color: var(--text-main);}
 
         /* Footer (Dark Premium Style) */
         .footer { background-color: #111518; color: white; text-align: center; padding: 80px 20px; margin-top: 50px; }
@@ -95,21 +95,18 @@
         .mobile-bottom-nav { display: none; }
 
         /* =================================================================
-           📱 모바일 반응형 (max-width: 768px) - 레퍼런스 스타일 완벽 구현
+           📱 모바일 반응형
            ================================================================= */
         @media (max-width: 768px) {
-            body { padding-bottom: 70px; /* 하단 네비게이션 공간 확보 */ }
-            
-            /* 헤더: 중앙 로고 정렬 */
+            body { padding-bottom: 70px; }
             .header { padding: 15px 20px; justify-content: center; background: transparent; border: none;}
             .nav-links { display: none; }
             .logo { font-size: 1.8rem; }
 
-            /* 하단 고정 네비게이션 활성화 */
             .mobile-bottom-nav {
                 display: flex; justify-content: space-around; align-items: center;
                 position: fixed; bottom: 0; left: 0; right: 0;
-                background: white; padding: 12px 0 20px 0; /* 아이폰 하단 여백 고려 */
+                background: white; padding: 12px 0 20px 0; 
                 border-top: 1px solid #eee; z-index: 1000;
                 box-shadow: 0 -5px 20px rgba(0,0,0,0.03);
             }
@@ -117,48 +114,34 @@
             .nav-item.active { color: var(--accent-color); }
             .nav-item svg { width: 22px; height: 22px; fill: currentColor; }
 
-            /* 모바일 Hero 섹션: 세로 정렬 및 원형 프사 */
             .hero { flex-direction: column; text-align: left; gap: 20px; margin: 20px auto 60px; align-items: flex-start; }
-            
             .hero-img { 
                 flex: none; width: 110px; height: 110px; 
-                border-radius: 50%; /* 원형 이미지 */
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-                margin-bottom: 5px;
+                border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 5px;
             }
             .hero-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-            
             .hero-text { width: 100%; }
             .hero-text h1 { font-size: 2rem; margin-bottom: 10px; line-height: 1.3;}
             .hero-text h4 { font-size: 0.9rem; margin-bottom: 25px; color: var(--accent-color); }
             
-            /* 모바일 'ABOUT' 카드 디자인 */
             .about-card { 
-                background: white; 
-                padding: 25px; 
-                border-radius: 16px; 
-                box-shadow: 0 4px 20px rgba(0,0,0,0.03); 
-                margin-bottom: 20px;
-                border: 1px solid #f0f0f0;
+                background: white; padding: 25px; border-radius: 16px; 
+                box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 20px; border: 1px solid #f0f0f0;
             }
             .about-label { display: block; font-size: 0.75rem; color: #aaa; font-family: 'GmarketSansBold'; margin-bottom: 12px; letter-spacing: 1px; }
             .about-card p { font-size: 0.95rem; margin-bottom: 10px; }
-            
-            .btn-group { display: none; /* 모바일에선 하단 네비게이션이 역할을 대신함 */ }
+            .btn-group { display: none; }
 
-            /* 섹션 여백 및 타이틀 축소 */
             .section-title { font-size: 1.4rem; margin-bottom: 20px; font-size: 0.85rem; color: #999; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 10px; display: block;}
             .exp-card h3 { font-size: 1.1rem; border: none; margin-bottom: 10px; }
             .exp-grid { grid-template-columns: 1fr; gap: 20px; }
             .exp-card { padding: 30px 20px; border-radius: 12px;}
 
-            /* Featured Projects 모바일 */
             .featured-header { margin-bottom: 20px; align-items: center;}
             .project-grid { grid-template-columns: 1fr; gap: 25px; }
             .project-card { padding: 15px; }
-            .project-card img { margin-bottom: 15px; }
+            .project-card img { margin-bottom: 10px; }
             
-            /* 모바일 푸터 */
             .footer { padding: 60px 20px; border-radius: 20px 20px 0 0; margin-top: 40px;}
             .footer h2 { font-size: 1.6rem; }
         }
@@ -184,7 +167,7 @@
         </div>
         <div class="hero-text">
             <h1>사람의 이야기를 기록하고<br>넓은 시선으로 전달합니다.</h1>
-            <h4>VIDEO CREATOR & STRATEGIST</h4>
+            <h4>VIDEO CREATOR & EDITOR</h4>
             
             <div class="about-card">
                 <p class="about-label">ABOUT</p>
@@ -204,7 +187,6 @@
     <section class="expertise" id="expertise">
         <h2 class="section-title">Career Highlights</h2>
         <div class="exp-grid">
-            
             <div class="exp-card">
                 <h3>CAREER (TEAM)</h3>
                 <ul>
@@ -264,7 +246,6 @@
                 <p style="margin-bottom: 25px; color: var(--text-main); font-family: 'GmarketSansBold';">Premiere Pro, After Effects, Photoshop, Illustrator, Lightroom, Notion 등 다양한 툴 활용에 능숙합니다.</p>
                 <p>다양한 프로젝트를 경험했지만, 제가 가장 오래 붙잡고 싶은 건 사람이 등장하는 인터뷰와 현장 중심의 이야기입니다.</p>
             </div>
-
         </div>
     </section>
 
@@ -278,7 +259,6 @@
             {% for video in featured_videos %}
             <a href="{{ video.url }}" target="_blank" class="project-card">
                 <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
-                <h4>{{ video.tags[0] if video.tags else 'Video' }}</h4>
                 <h3>{{ video.title }}</h3>
             </a>
             {% endfor %}
@@ -292,20 +272,4 @@
         <p style="margin-top: 10px;">© 2026 Jieun Kim. All rights reserved.</p>
     </footer>
 
-    <nav class="mobile-bottom-nav">
-        <a href="/" class="nav-item active">
-            <svg viewBox="0 0 24 24"><path d="M12 3L4 9v12h16V9l-8-6zm6 10.5V20h-4v-5H10v5H6v-6.5l6-4.5 6 4.5z"/></svg>
-            <span>HOME</span>
-        </a>
-        <a href="/projects" class="nav-item">
-            <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
-            <span>WORK</span>
-        </a>
-        <a href="mailto:gorjeous11@gmail.com" class="nav-item">
-            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            <span>REACH</span>
-        </a>
-    </nav>
-
-</body>
-</html>
+    <nav class="
