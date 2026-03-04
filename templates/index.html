@@ -8,20 +8,30 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M13.75%208h-1.5c0-1.24-1.01-2.25-2.25-2.25v-1.5c1.24%200%202.25-1.01%202.25-2.25h1.5c0%201.24%201.01%202.25%202.25%202.25v1.5c-1.24%200-2.25%201.01-2.25%202.25Zm-.74-2.25h-.015l.015.01v-.01Zm-.015-1.5h.015l-.015-.01v.01Zm-2.995%206c-1.79%200-3.25-1.46-3.25-3.25h-1.5c0%201.79-1.46%203.25-3.25%203.25v1.5c1.79%200%203.25%201.46%203.25%203.25h1.5c0-1.79%201.46-3.25%203.25-3.25v-1.5Zm-4%202.2A4.775%204.775%200%200%200%204.55%2011%204.775%204.775%200%200%200%206%209.55c.37.58.865%201.075%201.45%201.45-.58.37-1.075.865-1.45%201.45Zm16%202.8A5.256%205.256%200%200%201%2016.75%2010h-1.5A5.256%205.256%200%200%201%2010%2015.25v1.5A5.256%205.256%200%200%201%2015.25%2022h1.5A5.256%205.256%200%200%201%2022%2016.75v-1.5Zm-6%203.67A6.777%206.777%200%200%200%2013.08%2016%206.777%206.777%200%200%200%2016%2013.08%206.777%206.777%200%200%200%2018.92%2016%206.777%206.777%200%200%200%2016%2018.92Z%22%20fill%3D%22%23202023%22/%3E%3C/svg%3E">
 
     <style>
-        @font-face { font-family: 'ChosunIlboMyungjo'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff'); font-weight: normal; font-style: normal; }
+        /* 중앙 로고용 폰트 (유지) */
+        @font-face {
+            font-family: 'YleeMemoriesNeverSleep';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/yleeMortalHeartImmortalMemory.woff2') format('woff2');
+            font-weight: normal;
+            font-display: swap;
+        }
+
+        /* 메인 폰트 G마켓 산스 복구 */
+        @font-face { font-family: 'GmarketSansLight'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff'); font-weight: 300; font-style: normal; }
         @font-face { font-family: 'GmarketSansMedium'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); font-weight: 500; font-style: normal; }
         @font-face { font-family: 'GmarketSansBold'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff'); font-weight: 700; font-style: normal; }
 
         :root {
-            --bg-color: #FAF9F6; /* 레퍼런스의 따뜻한 오프화이트 배경 */
+            --bg-color: #FAF9F6;
             --text-main: #1A1A1A;
-            --text-sub: #666;
-            --accent-color: #4A6572; /* 차분한 블루그레이 포인트 */
+            --text-sub: #555;
+            --accent-color: #4A6572; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
+            /* 폰트 적용 */
             font-family: 'GmarketSansMedium', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
@@ -34,8 +44,8 @@
             display: flex; justify-content: space-between; align-items: center;
             padding: 30px 50px; max-width: 1400px; margin: 0 auto;
         }
-        .logo { font-family: 'GmarketSansBold'; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
-        .nav-links { display: flex; gap: 40px; font-size: 0.95rem; font-weight: bold; }
+        .logo { font-family: 'YleeMemoriesNeverSleep', cursive; font-size: 2rem; display: flex; align-items: center; gap: 10px; font-weight: normal;}
+        .nav-links { display: flex; gap: 40px; font-size: 0.95rem; font-family: 'GmarketSansBold'; }
         .nav-links a:hover { color: var(--accent-color); }
 
         /* --- Hero Section --- */
@@ -47,12 +57,12 @@
         }
         .hero-img img { width: 100%; height: auto; display: block; }
         .hero-text { flex: 1; }
-        .hero-text h4 { font-size: 0.85rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+        .hero-text h4 { font-size: 0.85rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-family: 'GmarketSansBold';}
         .hero-text h1 { 
-            font-family: 'ChosunIlboMyungjo', serif; 
-            font-size: 4rem; line-height: 1.1; margin-bottom: 25px; color: var(--text-main);
+            font-family: 'GmarketSansBold'; 
+            font-size: 2.8rem; line-height: 1.2; margin-bottom: 25px; color: var(--text-main); letter-spacing: -1px; word-break: keep-all;
         }
-        .hero-text p { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 40px; word-break: keep-all; line-height: 1.8; }
+        .hero-text p { font-size: 1.05rem; color: var(--text-sub); margin-bottom: 40px; word-break: keep-all; line-height: 1.8; }
         .btn-group { display: flex; gap: 15px; }
         .btn { padding: 15px 30px; font-family: 'GmarketSansBold'; border-radius: 50px; transition: all 0.3s; font-size: 0.9rem;}
         .btn-primary { background: var(--accent-color); color: white; border: 1px solid var(--accent-color); }
@@ -62,36 +72,48 @@
 
         /* --- Expertise Section --- */
         .expertise { max-width: 1200px; margin: 0 auto 100px; padding: 0 20px; }
-        .section-title { font-family: 'ChosunIlboMyungjo', serif; font-size: 2.5rem; margin-bottom: 40px; }
-        .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .exp-card { background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
-        .exp-card h3 { font-family: 'GmarketSansBold'; font-size: 1.2rem; margin-bottom: 15px; }
-        .exp-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
+        .section-title { font-family: 'GmarketSansBold'; font-size: 2.5rem; margin-bottom: 40px; letter-spacing: -1px;}
+        .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: start; }
+        
+        .exp-card { background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); height: 100%;}
+        .exp-card h3 { font-family: 'GmarketSansBold'; font-size: 1.2rem; margin-bottom: 20px; border-bottom: 2px solid var(--text-main); padding-bottom: 10px; display: inline-block;}
+        .exp-card p { font-size: 0.95rem; color: var(--text-sub); line-height: 1.7; word-break: keep-all;}
+        
+        /* 카드 내 리스트 스타일 */
+        .exp-card ul { list-style: none; padding: 0; margin: 0; }
+        .exp-card li { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed #eee; }
+        .exp-card li:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        
+        .card-title-row { display: block; margin-bottom: 5px; }
+        .card-company { font-family: 'GmarketSansBold'; color: var(--text-main); font-size: 1.05rem; }
+        .card-year { font-size: 0.85rem; color: var(--accent-color); font-weight: bold; margin-left: 5px; }
+        .card-role { font-size: 0.85rem; color: #888; display: block; margin-bottom: 8px;}
+        .card-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; word-break: keep-all; }
 
         /* --- Featured Projects --- */
         .featured { max-width: 1200px; margin: 0 auto 100px; padding: 0 20px; }
         .featured-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
-        .view-all { font-weight: bold; color: var(--accent-color); border-bottom: 1px solid transparent; transition: border 0.3s; }
+        .view-all { font-family: 'GmarketSansBold'; color: var(--accent-color); border-bottom: 1px solid transparent; transition: border 0.3s; }
         .view-all:hover { border-bottom-color: var(--accent-color); }
         
         .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
-        .project-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin-bottom: 20px; transition: transform 0.3s;}
+        .project-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin-bottom: 20px; transition: transform 0.3s; border: 1px solid #eee;}
         .project-card:hover img { transform: scale(1.02); }
-        .project-card h4 { font-size: 0.8rem; color: var(--accent-color); margin-bottom: 5px; text-transform: uppercase; }
-        .project-card h3 { font-family: 'ChosunIlboMyungjo', serif; font-size: 1.8rem; margin-bottom: 10px; }
+        .project-card h4 { font-family: 'GmarketSansBold'; font-size: 0.8rem; color: var(--accent-color); margin-bottom: 5px; text-transform: uppercase; }
+        .project-card h3 { font-family: 'GmarketSansBold'; font-size: 1.4rem; margin-bottom: 10px; word-break: keep-all; line-height: 1.4;}
 
         /* Footer */
         .footer { text-align: center; padding: 60px 20px; border-top: 1px solid #ddd; margin-top: 50px; }
-        .footer h2 { font-family: 'ChosunIlboMyungjo', serif; font-size: 2rem; margin-bottom: 10px; }
-        .footer p { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 30px; }
+        .footer h2 { font-family: 'GmarketSansBold'; font-size: 2rem; margin-bottom: 15px; letter-spacing: -1px;}
+        .footer p { color: var(--text-sub); font-size: 0.95rem; margin-bottom: 30px; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero { flex-direction: column; text-align: center; gap: 30px; }
-            .hero-text h1 { font-size: 2.8rem; }
+            .hero-text h1 { font-size: 2.2rem; }
             .btn-group { justify-content: center; }
-            .exp-grid { grid-template-columns: 1fr; }
-            .project-grid { grid-template-columns: 1fr; }
+            .exp-grid { grid-template-columns: 1fr; gap: 20px;}
+            .project-grid { grid-template-columns: 1fr; gap: 30px;}
         }
     </style>
 </head>
@@ -115,8 +137,13 @@
         </div>
         <div class="hero-text">
             <h4>VIDEO CREATOR & EDITOR</h4>
-            <h1>이야기를 영상으로<br>생생하게 담아냅니다.</h1>
-            <p>기획 단계부터 카메라를 들고 현장을 담아내고, 섬세한 편집을 통해 하나의 완성된 작품을 만들어내는 모든 과정에 참여하는 올라운더 비주얼 스토리텔러 김지은입니다.</p>
+            <h1>사람의 이야기를 기록하고<br>넓은 시선으로 전달합니다.</h1>
+            <p>
+                안녕하세요. 사람의 이야기를 인터뷰로 기록하고, 더 넓은 시선으로 전달하는 영상 제작자 김지은입니다.<br><br>
+                기획부터 촬영, 편집까지 한 흐름으로 작업하며, 현장에서 들은 말과 분위기를 정리해 짧고 밀도 있는 콘텐츠로 완성하는 일을 좋아합니다.<br><br>
+                공공기관 유튜브 시리즈, 브랜드 콘텐츠, 지역 프로젝트 등 다양한 환경에서 제작 경험을 쌓아왔고, 앞으로도 서사와 장면의 힘이 살아있는 사람 중심 콘텐츠를 꾸준히 만들고 싶습니다.<br><br>
+                현재 방송통신대학교에서 영상 관련 공부를 이어가며, 이야기를 설계하고 연출로 구현하는 방식을 더 깊게 다듬고 있습니다.
+            </p>
             <div class="btn-group">
                 <a href="/projects" class="btn btn-primary">View All Projects</a>
                 <a href="mailto:gorjeous11@gmail.com" class="btn btn-outline">Get in Touch</a>
@@ -127,18 +154,70 @@
     <section class="expertise" id="expertise">
         <h2 class="section-title">Expertise & Career</h2>
         <div class="exp-grid">
+            
             <div class="exp-card">
-                <h3>🎬 All-Round Creator</h3>
-                <p>유튜브 영상 제작을 주로 해왔으며, 기획부터 촬영, 편집까지 전 과정을 아우르는 올라운더로 활동합니다.</p>
+                <h3>CAREER (TEAM)</h3>
+                <ul>
+                    <li>
+                        <span class="card-title-row">
+                            <span class="card-company">무나</span>
+                            <span class="card-year">2021</span>
+                        </span>
+                        <span class="card-role">영상 제작</span>
+                        <span class="card-desc">총리실 유튜브 콘텐츠 제작(시리즈 영상 담당)</span>
+                    </li>
+                    <li>
+                        <span class="card-title-row">
+                            <span class="card-company">팀브릭스</span>
+                            <span class="card-year">2022–2024</span>
+                        </span>
+                        <span class="card-role">영상 제작</span>
+                        <span class="card-desc">브랜드·기관 콘텐츠 제작 및 운영<br>(기획/촬영/편집)</span>
+                    </li>
+                    <li>
+                        <span class="card-title-row">
+                            <span class="card-company">디자인북스</span>
+                            <span class="card-year">2025</span>
+                        </span>
+                        <span class="card-role">프리랜서 영상 제작</span>
+                        <span class="card-desc">부산 지역 중소기업 홍보영상 프로젝트<br>(촬영/편집)</span>
+                    </li>
+                </ul>
             </div>
+
             <div class="exp-card">
-                <h3>🏢 Public & Brand</h3>
-                <p>국무총리실, 부산지역 중소기업 30개사, 웅진씽크빅 등 다수의 공공기관 및 브랜드 프로젝트를 총괄했습니다.</p>
+                <h3>DESCRIPTION</h3>
+                <ul>
+                    <li>
+                        <span class="card-title-row">
+                            <span class="card-company">총리실 유튜브 ‘뚜겸뚜겸’ 시리즈</span>
+                            <span class="card-year">2021</span>
+                        </span>
+                        <span class="card-desc">공공기관 메시지를 시청자가 이해하기 쉬운 흐름으로 구성해 전달하는 시리즈 콘텐츠 제작에 참여했습니다.</span>
+                    </li>
+                    <li>
+                        <span class="card-title-row">
+                            <span class="card-company">웅진씽크빅 유튜브 ‘웅이지니’</span>
+                            <span class="card-year">2022–2024</span>
+                        </span>
+                        <span class="card-desc">유튜브 채널의 다양한 포맷 콘텐츠를 제작하며, 현장 촬영부터 편집까지 일관된 톤으로 완성도를 관리했습니다.</span>
+                    </li>
+                    <li>
+                        <span class="card-title-row">
+                            <span class="card-company">부산 지역 중소기업 홍보영상</span>
+                            <span class="card-year">2025</span>
+                        </span>
+                        <span class="card-desc">부산 지역 중소기업 홍보영상 프로젝트에서 촬영과 편집을 담당하며, 각 기업의 강점을 짧고 명확하게 전달하는 영상을 제작했습니다.</span>
+                    </li>
+                </ul>
             </div>
+
             <div class="exp-card">
                 <h3>🛠 Professional Skills</h3>
-                <p>Premiere Pro, After Effects, Photoshop, Illustrator, Lightroom, Notion 등 다양한 툴 활용에 능숙합니다.</p>
+                <p style="margin-bottom: 25px;">Premiere Pro, After Effects, Photoshop, Illustrator, Lightroom, Notion 등 다양한 툴 활용에 능숙합니다.</p>
+                <p>다양한 프로젝트를 경험했지만, 제가 가장 오래 붙잡고 싶은 건 사람이 등장하는 인터뷰와 현장 중심의 이야기입니다.</p>
             </div>
+
         </div>
     </section>
 
@@ -160,9 +239,9 @@
     </section>
 
     <footer class="footer">
-        <h2>Ready to tell your story?</h2>
+        <h2>당신의 이야기를 들려주세요.</h2>
         <p>Busan, Korea | gorjeous11@gmail.com</p>
-        <p style="font-size: 0.8rem; color: #999;">© 2026 Jieun Kim. All rights reserved.</p>
+        <p style="font-size: 0.85rem; color: #999; margin-top: 10px;">© 2026 Jieun Kim. All rights reserved.</p>
     </footer>
 
 </body>
