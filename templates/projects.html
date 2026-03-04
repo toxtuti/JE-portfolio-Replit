@@ -33,7 +33,7 @@
         .page-title { font-family: 'GmarketSansBold'; font-size: 3rem; margin-bottom: 10px; }
         .page-desc { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 50px; max-width: 600px; }
 
-        /* Filter Tabs (데스크톱 기본) */
+        /* Filter Tabs */
         .filter-section { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; overflow-x: auto; white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; }
         .filter-section::-webkit-scrollbar { display: none; }
         .filter-label { font-size: 0.85rem; color: #999; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
@@ -42,7 +42,7 @@
         .filter-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
         .filter-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
 
-        /* Video Grid (가로 5개 배열) */
+        /* Video Grid */
         .video-grid { 
             display: grid; 
             grid-template-columns: repeat(5, 1fr); 
@@ -59,7 +59,6 @@
         .thumb-wrapper { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #eee; }
         .video-thumbnail { width: 100%; height: 100%; object-fit: cover; }
         
-        /* 장르 뱃지 (왼쪽 위) */
         .genre-badge { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.95); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-family: 'GmarketSansBold'; color: var(--text-main); }
 
         .video-info { padding: 15px; }
@@ -72,12 +71,13 @@
 
         /* Pagination (페이지네이션) */
         .pagination { 
-            display: flex; justify-content: center; gap: 10px; margin-top: 50px; 
-            flex-wrap: wrap; /* [NEW] 줄바꿈 허용 (모바일 뚫고 나감 방지) */
+            display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 50px; 
         }
-        .page-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-color); background: white; font-family: 'GmarketSansBold'; color: var(--text-sub); transition: all 0.2s; display: flex; align-items: center; justify-content: center;}
+        .page-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-color); background: white; font-family: 'GmarketSansBold'; color: var(--text-sub); transition: all 0.2s; display: flex; align-items: center; justify-content: center; font-size: 1rem;}
         .page-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
         .page-btn.active { background: var(--accent-color); color: white; border-color: var(--accent-color); }
+        .nav-btn { font-size: 1.2rem; color: #999; border: none; background: transparent; } /* < > 버튼 스타일 */
+        .nav-btn:hover { background: #eee; border-color: transparent; }
 
         /* =================================================================
            📱 모바일 반응형
@@ -89,37 +89,25 @@
             .header { padding: 15px 20px; }
             .page-title { font-size: 2.2rem; }
             
-            /* [NEW] 모바일 필터 블록 텍스트 형태로 디자인 변경 */
             .filter-section {
-                display: block; /* 가로 스크롤 제거, 한 덩어리로 만듦 */
-                white-space: normal; /* 줄바꿈 허용 */
-                line-height: 2.2; /* 위아래 간격 넉넉히 */
-                padding-bottom: 15px;
+                display: block; white-space: normal; line-height: 2.2; padding-bottom: 15px;
             }
-            .filter-label { display: block; margin-bottom: 8px; } /* FILTER BY 라벨을 윗줄로 */
+            .filter-label { display: block; margin-bottom: 8px; }
             
             .filter-btn {
-                display: inline-block;
-                padding: 0; border: none; background: transparent;
+                display: inline-block; padding: 0; border: none; background: transparent;
                 font-size: 0.95rem; color: var(--text-sub); font-family: 'GmarketSansMedium';
             }
             .filter-btn.active {
                 background: transparent; color: var(--accent-color); font-family: 'GmarketSansBold';
                 text-decoration: underline; text-underline-offset: 4px;
             }
-            /* 버튼 사이에 슬래시(/) 넣기 (마지막 버튼 제외) */
             .filter-btn:not(:last-child)::after {
-                content: " / ";
-                color: #ccc;
-                margin: 0 8px;
-                font-weight: normal;
-                text-decoration: none;
-                display: inline-block;
+                content: " / "; color: #ccc; margin: 0 8px; font-weight: normal; text-decoration: none; display: inline-block;
             }
 
-            /* [NEW] 모바일 페이지네이션 크기 축소 */
             .pagination { gap: 6px; }
-            .page-btn { width: 34px; height: 34px; font-size: 0.85rem; }
+            .page-btn { width: 36px; height: 36px; font-size: 0.9rem; }
         }
         
         @media (max-width: 480px) { .video-grid { grid-template-columns: 1fr; } }
@@ -234,6 +222,7 @@
             renderPaginationButtons();
         }
 
+        // [NEW] 스마트한 블록 페이지네이션 렌더링
         function renderPaginationButtons() {
             let pageCount = Math.ceil(filteredItems.length / itemsPerPage);
             let paginationContainer = document.getElementById("pagination");
@@ -241,7 +230,27 @@
 
             if (pageCount <= 1) return; 
 
-            for (let i = 1; i <= pageCount; i++) {
+            // 모바일 환경이면 한 번에 5페이지, 데스크톱이면 10페이지씩 묶어서 보여주기
+            let visiblePages = window.innerWidth <= 768 ? 5 : 10;
+            let currentBlock = Math.ceil(currentPage / visiblePages);
+            let startPage = (currentBlock - 1) * visiblePages + 1;
+            let endPage = Math.min(startPage + visiblePages - 1, pageCount);
+
+            // [이전 블록 버튼] 생성 (<)
+            if (currentBlock > 1) {
+                let prevBtn = document.createElement("button");
+                prevBtn.innerHTML = "&#10094;"; // < 아이콘
+                prevBtn.className = "page-btn nav-btn";
+                prevBtn.onclick = function() {
+                    currentPage = startPage - 1;
+                    renderPage();
+                    window.scrollTo({ top: document.getElementById('filter-nav').offsetTop - 50, behavior: 'smooth' });
+                };
+                paginationContainer.appendChild(prevBtn);
+            }
+
+            // [숫자 버튼] 생성 (1, 2, 3, 4, 5...)
+            for (let i = startPage; i <= endPage; i++) {
                 let btn = document.createElement("button");
                 btn.innerText = i;
                 btn.className = "page-btn" + (i === currentPage ? " active" : "");
@@ -252,7 +261,23 @@
                 };
                 paginationContainer.appendChild(btn);
             }
+
+            // [다음 블록 버튼] 생성 (>)
+            if (endPage < pageCount) {
+                let nextBtn = document.createElement("button");
+                nextBtn.innerHTML = "&#10095;"; // > 아이콘
+                nextBtn.className = "page-btn nav-btn";
+                nextBtn.onclick = function() {
+                    currentPage = endPage + 1;
+                    renderPage();
+                    window.scrollTo({ top: document.getElementById('filter-nav').offsetTop - 50, behavior: 'smooth' });
+                };
+                paginationContainer.appendChild(nextBtn);
+            }
         }
+
+        // 화면 크기가 변할 때마다(가로모드 등) 페이지네이션 버튼 개수 다시 계산
+        window.addEventListener('resize', renderPaginationButtons);
 
         filterSelection("all");
     </script>
