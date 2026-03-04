@@ -40,7 +40,11 @@
         /* --- Hero Section (Desktop) --- */
         .hero { display: flex; gap: 50px; max-width: 1200px; margin: 60px auto 100px; padding: 0 20px; align-items: center; }
         .hero-img { flex: 1.3; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
-        .hero-img img { width: 100%; height: auto; display: block; border-radius: 12px; }
+        
+        /* [NEW] 데스크톱 이미지 & 모바일 이미지 분리 설정 */
+        .img-desktop { display: block; width: 100%; height: auto; border-radius: 12px; }
+        .img-mobile { display: none; /* 데스크톱에서는 모바일용 숨김 */ }
+
         .hero-text { flex: 1; }
         .hero-text h4 { font-size: 0.85rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-family: 'GmarketSansBold'; }
         .hero-text h1 { font-family: 'GmarketSansBold'; font-size: 2.5rem; line-height: 1.3; margin-bottom: 20px; color: var(--text-main); letter-spacing: -1px; word-break: keep-all; }
@@ -81,17 +85,16 @@
         .project-card { display: block; background: white; padding: 20px; border-radius: 16px; border: 1px solid #f0f0f0; transition: transform 0.3s, box-shadow 0.3s; }
         .project-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        /* 태그(h4)를 지웠으므로 제목(h3) 위쪽 여백 조절 */
         .project-card h3 { font-family: 'GmarketSansBold'; font-size: 1.3rem; margin-top: 5px; margin-bottom: 5px; word-break: keep-all; line-height: 1.4; color: var(--text-main);}
 
-        /* Footer (Dark Premium Style) */
+        /* Footer */
         .footer { background-color: #111518; color: white; text-align: center; padding: 80px 20px; margin-top: 50px; }
         .footer h2 { font-family: 'GmarketSansMedium'; font-size: 2rem; margin-bottom: 25px; letter-spacing: -0.5px; font-weight: normal;}
         .footer .btn-primary { display: inline-block; margin-bottom: 40px; background: #2C3E50; border: none; }
         .footer .btn-primary:hover { background: #4A6572; }
         .footer p { color: #888; font-size: 0.85rem; }
 
-        /* 모바일 하단 네비게이션 (데스크톱에선 숨김) */
+        /* 모바일 하단 네비게이션 */
         .mobile-bottom-nav { display: none; }
 
         /* =================================================================
@@ -119,7 +122,11 @@
                 flex: none; width: 110px; height: 110px; 
                 border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 5px;
             }
-            .hero-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+            
+            /* [NEW] 모바일에서는 데스크톱 이미지 숨기고 모바일 이미지 켜기 */
+            .img-desktop { display: none; }
+            .img-mobile { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
             .hero-text { width: 100%; }
             .hero-text h1 { font-size: 2rem; margin-bottom: 10px; line-height: 1.3;}
             .hero-text h4 { font-size: 0.9rem; margin-bottom: 25px; color: var(--accent-color); }
@@ -163,7 +170,9 @@
 
     <section class="hero">
         <div class="hero-img">
-            <img src="/static/profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1000&auto=format&fit=crop'" alt="Video Creator">
+            <img class="img-desktop" src="/static/profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1000&auto=format&fit=crop'" alt="Video Creator Desktop">
+            
+            <img class="img-mobile" src="/static/profile_mobile.jpeg" onerror="this.src='https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1000&auto=format&fit=crop'" alt="Video Creator Mobile">
         </div>
         <div class="hero-text">
             <h1>사람의 이야기를 기록하고<br>넓은 시선으로 전달합니다.</h1>
@@ -272,4 +281,20 @@
         <p style="margin-top: 10px;">© 2026 Jieun Kim. All rights reserved.</p>
     </footer>
 
-    <nav class="
+    <nav class="mobile-bottom-nav">
+        <a href="/" class="nav-item active">
+            <svg viewBox="0 0 24 24"><path d="M12 3L4 9v12h16V9l-8-6zm6 10.5V20h-4v-5H10v5H6v-6.5l6-4.5 6 4.5z"/></svg>
+            <span>HOME</span>
+        </a>
+        <a href="/projects" class="nav-item">
+            <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+            <span>WORK</span>
+        </a>
+        <a href="mailto:gorjeous11@gmail.com" class="nav-item">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>REACH</span>
+        </a>
+    </nav>
+
+</body>
+</html>
