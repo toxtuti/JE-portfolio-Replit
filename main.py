@@ -16,7 +16,7 @@ def load_videos():
     """videos.json 파일에서 영상 데이터를 불러옵니다."""
     json_path = os.path.join(os.path.dirname(__file__), 'videos.json')
     with open(json_path, encoding='utf-8') as f:
-        return json.load(f)
+        return list(reversed(json.load(f)))
 
 def get_grouped_videos():
     """장르별로 그룹화된 영상 데이터를 반환합니다."""
