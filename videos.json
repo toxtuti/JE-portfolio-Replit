@@ -2804,4 +2804,21 @@
     "is_featured": false,
     "sort_order": 9999
   }
-]
+,{
+    "title": "[Travelog #4] 후쿠오카 기타큐슈 4일, 날씨도 음식도 너무 감사하시다",
+    "url": "https://youtu.be/jP6ihfwdoeE?si=M8Hcp9q8azOey_kD",
+    "thumbnail": "https://img.youtube.com/vi/jP6ihfwdoeE/hqdefault.jpg",
+    "tags": ["촬영", "편집", "기획", "업로드", "썸네일"],
+    "genre": "브이로그",
+    "is_featured": false,
+    "sort_order": 9999
+  },
+  {
+    "title": "[Monthly vlog #13] 영화관 단골손님의 2월 브이로그(이달의 방문 4회) | 2026 02",
+    "url": "https://youtu.be/QY3wVVw9tyw?si=9vRCmF4VurzxxDif",
+    "thumbnail": "https://img.youtube.com/vi/QY3wVVw9tyw/hqdefault.jpg",
+    "tags": ["촬영", "편집", "기획", "업로드", "썸네일"],
+    "genre": "브이로그",
+    "is_featured": false,
+    "sort_order": 9999
+  }
